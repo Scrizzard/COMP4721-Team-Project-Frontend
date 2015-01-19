@@ -1,0 +1,50 @@
+
+MEETING NOTES - JANUARY 16, 2015
+
+DESIGN IDEAS
+- different inscriptions open up in different tabs
+- which notification you click on opens a specific tab
+- when opening app, either open up to the new inscription you've just passed, or the last one you've visited
+- have a map, be able to see possible locations highlighted
+	> link to google map, potentially
+	> ability to get directions to other areas
+	> different colours for already visited places?
+- Potential Options: help, settings, info, search? (for the future)
+- emphasis on user control over their experience
+	> user may specify type of notifications, how many notifications/inscriptions, within each inscription ability to get extra notifications
+- on each inscription page, either have a see map option, or just the inscription info
+	> potentially use Google maps for an embedded map, since it's available on most phones already
+- there should be a difference between getting notified about passing an inscription and actually reading the page/visiting the site
+
+UNANSWERED QUESTIONS/FURTHER DISCUSSION
+- how do you actually make a map with things highlighted?
+	> is that a data or a front end issue?
+	> how do we connect from clicking on the map to a page in our app?
+- multiple notifications: is there a way to delete redundant or previous notifications?
+	> open to the inscription for the specific notification they've clicked on?
+	> can we make a queue of notifications?
+		>> open up a new tab/view every time you get a new notification
+		>> one tab with "current" or closest inscription with focus (or an icon that indicates its status)
+- what exactly should notifications constitute? 
+			
+TO DISCUSS WITH BACK-END TEAM
+- data story, data structures we'll be dealing with
+- what things we want to keep track of: number of notifications, change of inscription settings (max reminders, etc), 
+	actually viewed notification vs. walked by but did not click notification
+- set up preliminary calendar of events
+- set up shared Github 
+- communication scheme between groups
+	> shared notes, any other ideas?
+	> put meeting descriptions on communal Github
+		
+NEXT STEPS
+- start playing around with screens
+- designing help and settings pages
+- look at geofencing code
+- preliminary research on android app development
+
+	
+
+
+
+
