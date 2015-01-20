@@ -1,0 +1,53 @@
+GOALS ORGANIZED BY MILESTONE
+
+M1
+Goal 1: Visual Design (layout of screens, notifications are higher/lower priority subgoals)
+Goal 2: Specifications, User Requirements, Design Log
+Goal 3: Iron out data specs and where data is stored with other group
+M2
+Goal 4: Working prototype (a single inscription with filler text, pop-down menu with icons that link to blank pages, button that makes a notification pop up, help page?)
+M3
+Goal 5: Put prototype on app store
+Goal 6: Next level prototype (everything but map and search, looking exactly as we want it to look, fully connected to database, GPS notifications working)
+M4
+Goal 7: Fully functional launchable app, map and search implemented
+Goal 8: Do a walkthrough in Sackville to test the functionality with fake data
+M5
+Goal 9: Fully tested with out of class test subjects
+Goal 10: Final version uploaded on app store
+Goal 11 (Tentative): Add additional language functionality
+Goal 12 (Tentative) : Short intro tutorial
+
+
+Workflow Brainstorming - develop use cases and descriptions by Monday, Jan. 26
+
+CORINNE
+
+- Walks by, wants to explore inscription
+- walks by, doesn't to explore inscription
+- walks by, wants to explore LATER
+- walks by multiple inscriptions (does and doesn't want to explore)
+	> explore all, explore one, explores none
+- walks into an area with multiple inscriptions
+- walks by inscription on a daily basis
+
+KAREN
+
+- want to look at last inscription
+- want to see an inscription you've seen previously
+- want to find nearest inscription (map)
+- want to look at a list of inscriptions
+- wants to find inscription near travel path
+- wants to change notification settings
+- wants to reset "seen" inscriptions
+- wants to change base language
+- doesn't want to see translations of inscriptions
+
+JESSE
+
+- needs help navigating app
+- wants to find info about creaters
+- ERRORS
+- user gets notified but there isn't an inscription around (misnotification)
+- user can't find inscription 
+- user doesn't know what to search for when looking for inscription

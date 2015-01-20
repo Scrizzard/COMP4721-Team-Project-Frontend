@@ -1,0 +1,206 @@
+
+MEETING NOTES - JANUARY 16, 2015
+
+DESIGN IDEAS
+- different inscriptions open up in different tabs
+- which notification you click on opens a specific tab
+- when opening app, either open up to the new inscription you've just passed, or the last one you've visited
+- have a map, be able to see possible locations highlighted
+	+ link to google map, potentially
+	+ ability to get directions to other areas
+	+ different colours for already visited places?
+- Potential Options: help, settings, info, search? (for the future)
+- emphasis on user control over their experience
+	+ user may specify type of notifications, how many notifications/inscriptions, within each inscription ability to get extra notifications
+- on each inscription page, either have a see map option, or just the inscription info
+	+ potentially use Google maps for an embedded map, since it's available on most phones already
+- there should be a difference between getting notified about passing an inscription and actually reading the page/visiting the site
+
+UNANSWERED QUESTIONS/FURTHER DISCUSSION
+- how do you actually make a map with things highlighted?
+	+ is that a data or a front end issue?
+	+ how do we connect from clicking on the map to a page in our app?
+- multiple notifications: is there a way to delete redundant or previous notifications?
+	+ open to the inscription for the specific notification they've clicked on?
+	+ can we make a queue of notifications?
+		> open up a new tab/view every time you get a new notification
+		> one tab with "current" or closest inscription with focus (or an icon that indicates its status)
+- what exactly should notifications constitute? 
+			
+TO DISCUSS WITH BACK-END TEAM
+- data story, data structures we'll be dealing with
+- what things we want to keep track of: number of notifications, change of inscription settings (max reminders, etc), 
+	actually viewed notification vs. walked by but did not click notification
+- set up preliminary calendar of events
+- set up shared Github 
+- communication scheme between groups
+	+ shared notes, any other ideas?
+	+ put meeting descriptions on communal Github
+		
+NEXT STEPS
+- start playing around with screens
+- designing help and settings pages
+- look at geofencing code
+- preliminary research on android app development
+
+/--------------------------------------------------------------------------------------------------/
+	
+TEAM MEETING - JANUARY 19, 2015
+- what does it look like when something's missing? (eg. translation)
+- how much storage do we need to store our pictures, data, etc. 
+	> stored on online database, or downloaded with app?
+	> option to download different packet for different cities
+- what is our data?
+	FOR EACH INSCRIPTION (global, immmutable)
+	> short, but descriptive name
+	> inscription in original language
+	> english translation of inscription
+	> language of inscription
+	> location 
+		>> latitude, longitude, radius
+	> text description/physical description of location
+	> picture of location
+	> historical data (date, author, other historical info)
+	> difficulty of finding (easy, medium, hard)
+		>> determined by researcher when they send us info about the location
+	> unique key/serial number
+	> city this inscription is found in
+	ON PHONE/DEVICE (local, mutable)
+	> data on preferences for each inscription/global preferences
+	> seen or not seen
+	> remind me later, or never (timestamp)
+	> hidden/shown
+	
+		
+- ability to search (by what?)
+- back end is in charge of the GPS, sends a notification to the front end when a fence is encountered
+- fetch one inscription at a time from the back end
+	
+- separation of concerns 
+- front end requests to local database	
+	> hide/show notifications for a site
+	> don't show notifications for a site until timestap
+	> set site status to seen/not seen
+
+- questions for HW
+	> do we want short name?
+		>> if so, does it need translations?
+	> multiple pictures?
+	> local or hosted database?
+	> how much storage do we need?
+	> how should we plan for creation of additional cities?
+	
+/--------------------------------------------------------------------------------------------------/
+
+GROUP MEETING - JANUARY 19, 2015
+
+- inscription page
+	> button to open up map showing location
+	> option/button to set notification settings
+- tabs down side, coloured tabs (not clicked, clicked, discovered) 
+	> colouring matches map colours
+- under corner menu item
+	> list/home, map, serach, help, settings, info, list (all, found)
+	> list form
+- tutorial?
+- is the map a back end issue?
+- when map is opened, click on a location and SOME info pops up, as well as a button that brings user to inscription page
+- on inscription page, a button to bring to the map with location highlighted
+
+NEXT STEPS
+- project requirements, specifications, test cases [split up work by role]
+- group meeting to plan out goals and workflows [group]
+	> split work flows between 3 members to design use cases
+- prototype UI : design of each page [group]
+	> on paper, or electronically (photoshop)
+- meeting on Tuesday, Jan 20.: 1-230, Linux lab.
+
+TO ASK DR. HW
+- requirements vs. specifications document
+
+/--------------------------------------------------------------------------------------------------/
+
+GROUP MEETING - JANUARY 20, 2015
+
+GOALS
+- layouts for all screens : M1
+- design notifications (look, options, etc) : M1
+- come up with workflows
+- Milestone 1 documents
+- finish data story with other group
+- visual implementation (minus "guts" - database)
+	> each screen separately
+- notification implementation
+- connection to the map end
+- coding settings (possibly the hardest task)
+- getting implementation to work
+- testing 
+- get feedback on layouts
+	> does this work well? is it well explained/obvious?
+- app thumbnail
+- map implementation
+- design specifications for prototype (ultimately, full version)
+- first prototype : M2
+	> just the menu and one inscription page
+- write design report
+
+- thoughts: what is the purpose of the picture? just for location or for actually reading the inscription (in bad weather, at night, etc)
+	> have a low res pic on phone for locating the picture, but have the option to request a high res photo from the server for closer examination
+
+M1
+Goal 1: Visual Design (layout of screens, notifications are higher/lower priority subgoals)
+Goal 2: Specifications, User Requirements, Design Log
+Goal 3: Iron out data specs and where data is stored with other group
+M2
+Goal 4: Working prototype (a single inscription with filler text, pop-down menu with icons that link to blank pages, button that makes a notification pop up, help page?)
+M3
+Goal 5: Put prototype on app store
+Goal 6: Next level prototype (everything but map and search, looking exactly as we want it to look, fully connected to database, GPS notifications working)
+M4
+Goal 7: Fully functional launchable app, map and search implemented
+Goal 8: Do a walkthrough in Sackville to test the functionality with fake data
+M5
+Goal 9: Fully tested with out of class test subjects
+Goal 10: Final version uploaded on app store
+Goal 11 (Tentative): Add additional language functionality
+Goal 12 (Tentative) : Short intro tutorial
+
+
+Workflow Brainstorming - develop use cases and descriptions by Monday, Jan. 26
+
+CORINNE
+
+- Walks by, wants to explore inscription
+- walks by, doesn't to explore inscription
+- walks by, wants to explore LATER
+- walks by multiple inscriptions (does and doesn't want to explore)
+	> explore all, explore one, explores none
+- walks into an area with multiple inscriptions
+- walks by inscription on a daily basis
+
+KAREN
+
+- want to look at last inscription
+- want to see an inscription you've seen previously
+- want to find nearest inscription (map)
+- want to look at a list of inscriptions
+- wants to find inscription near travel path
+- wants to change notification settings
+- wants to reset "seen" inscriptions
+- wants to change base language
+- doesn't want to see translations of inscriptions
+
+JESSE
+
+- needs help navigating app
+- wants to find info about creaters
+- ERRORS
+- user gets notified but there isn't an inscription around (misnotification)
+- user can't find inscription 
+- user doesn't know what to search for when looking for inscription
+
+Next meeting - Friday, Jan. 23
+	
+
+
+
