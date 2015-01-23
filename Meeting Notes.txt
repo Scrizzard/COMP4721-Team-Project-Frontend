@@ -201,6 +201,19 @@ JESSE
 
 Next meeting - Friday, Jan. 23
 	
+Group Meeting - Jan 23
 
-
+- user requirements: things Dr. Robertson stated, along with anything we came up with
+- specifications: things we came up with to make these requirements work (the choices we've made)
+- design log: decisions we are making
+- team roles: assigned roles, division of work (planned)
+- requirements: KAREN, specifications: CORINNE, test case framework: JESSE
+- starting design logs: CORINNE
+- playing around with geofencing: KAREN
+- plan to chat with other team on Monday
+- keep disabled people in mind
+	> dyslexia (fonts)
+	> description of photos
+	> colour blind
+	
 
