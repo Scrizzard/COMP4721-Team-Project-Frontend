@@ -176,8 +176,6 @@ CORINNE
 - walks by multiple inscriptions (does and doesn't want to explore)
 	> explore all, explore one, explores none
 - walks into an area with multiple inscriptions
-- walks by inscription on a daily basis
-
 KAREN
 
 - want to look at last inscription
@@ -185,7 +183,7 @@ KAREN
 - want to find nearest inscription (map)
 - want to look at a list of inscriptions
 - wants to find inscription near travel path
-- wants to change notification settings
+- wants to change notification settings (either for one or many inscriptions)
 - wants to reset "seen" inscriptions
 - wants to change base language
 - doesn't want to see translations of inscriptions
@@ -216,4 +214,78 @@ Group Meeting - Jan 23
 	> description of photos
 	> colour blind
 	
+JANUARY 26 - MEETING WITH OTHER GROUP
 
+- notifications sent one-by-one from the database
+- all open up on the phone, but the vibrations only happen every X seconds
+	> notifications still occur, just will only vibrate for the first one
+- search by radius (search for all inscriptions within your vicinity)
+- both databases made by other grouo
+- hosting on phone vs. on servers?
+	> potentially too much data to store in phone's memory, but
+	could be costly to host information on a web server
+- store in the local database the location and a small thumbnail, level of 
+difficulty of each inscription, so that these could be displayed on the map
+	> if a user wants more information (the whole tab page) we would
+	then query the database
+- back end is responsible for sending the notification to the front end
+about entering a geofence, along with all relevant data
+- provide an update function to the back end for when new information 
+needs to be stored in the local database
+- the back end decides when a new geofence is entered whether or not
+to send the information to the phone based on data in the local and global
+databases
+- map, search information all stored in the local database, but when
+etnering a geofence the whole chunk of inscription information is sent to 
+the phone
+
+
+TEAM MEETING - JAN 29, 2015
+
+- consider making a contact us/report an error screen so that any bug we 
+potentially missed can be caught by our users 
+	> create a gmail account, sends us an email with whatever the 
+	message is
+	> field to enter an email to receive a reply
+- possibility: swipe right to delete a tab without opening it
+- possibility: three colour scheme, but discovered tabs get darker
+when you've actually viewed the tab page
+- when a new setting is chosen for notification about a particular inscription
+the next time to start notifying should be calculated and stored
+	> this prevents the need to actually stored the "notification setting",
+	 only the next date of modification
+	 
+	 
+MEETING WITH OTHER TEAM - FEB 06, 2015
+
+- composed objects 
+- three crossings of the FE/BE barrier
+	- BE notifies of an inscription
+	- FE requests to change a preference
+	- FE requests a list of inscriptions for a search
+- Proposal:
+	- have all information, minus full sized data, stored on the phone
+		> can feasibly 
+	- have full-sized pictures stored on the remote database
+- when downloading app for the first time, can you make it grab and create a local database from your remote service?
+	> might be that you have to download the data the first time you open the app
+	> include in app description that it requires to be opened with WIFI the first time to populate the local database
+- automatic updating
+	> list of cities users can choose from
+	> when deleting an inscription from the phone, delete its preference data as well
+	> what if you've forgotten to choose a city that you're currently in?
+		>>locational notification, check a few times a day if in a new city, send notification about new data to download
+		>> user can choose whether or not to download the information when they get back in a WIFI zone
+- summary of data stored
+	> local prefs
+	> local inscriptions
+	> list of cities that have inscriptions available: city name/ID, radius, booleans for whether we have the information on the whone
+	> global inscriptions
+- global settings for the phone handled by the front end
+- we need to be able to download/delete/update all inscriptions
+- note: android provides resources for storing user preferences
+- when you make a change to user preferences, should there be feedback that the change has been made?
+	> when you check a box, two stages of it looking different?
+- should the user be able to modify search radius?
+- what queries would be sent to the back end to fill out the map
+- notification settings are the date you next want to be notified
