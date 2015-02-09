@@ -289,3 +289,29 @@ MEETING WITH OTHER TEAM - FEB 06, 2015
 - should the user be able to modify search radius?
 - what queries would be sent to the back end to fill out the map
 - notification settings are the date you next want to be notified
+
+GROUP MEETING - FEB 9, 2015
+
+- able to open a few tabs with sample inscription pages (info stored in local storage)
+- in List, have a few changes to choose from
+	> when click on an item, create a new tab with info
+- sample notification
+- cities: to download new cities, check them and download when you 
+have internet (BE will provide method to fetch all cities
+- automatic updates for synchronizing local and global databases
+- set current city (general information)
+- initialize all preferences as empty (just in case a user wants to change 
+notification settings without passing by an inscription)
+
+FE requests from BE
+- get all inscriptions to display in list (by city)
+- get person's current location
+- get full picture for one inscription by ID
+- search: keyword (all fields) in all text fields
+- preferences: set found (undo found), set tab opened (send ID), set next notification time 
+- preferences: reset all found, reset all notifications (for current city, as passed by FE to BE)
+- preferences: set no notification for an inscription
+- add city
+- remove city
+- listenForInscription (have an object which implements observer)
+
