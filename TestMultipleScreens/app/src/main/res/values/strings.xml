@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Prototype 1</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_inscription">InscriptionActivity</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_start">StartActivity</string>
+
+</resources>
