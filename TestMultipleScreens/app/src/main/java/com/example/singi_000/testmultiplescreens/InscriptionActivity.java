@@ -21,54 +21,12 @@ import java.util.HashMap;
 
 public class InscriptionActivity extends BaseActivity {
 
-    public String iTitle1 = "Inscription 1";
-    public String iInfo1 = "Inscription 1: This is the textual explanation of how to find the inscription. " +
-            "We assume that this will be multi-lined and fairly lengthly in some cases, but smaller in others.";
-
-    public String iTitle2 = "Inscription 2";
-    public String iInfo2 = "Inscription 2: This is the textual explanation of how to find the inscription. " +
-            "We assume that this will be multi-lined and fairly lengthly in some cases, but smaller in others.";
-
-    public String iTitle3 = "Inscription 3";
-    public String iInfo3 = "Inscription 3: This is the textual explanation of how to find the inscription. " +
-            "We assume that this will be multi-lined and fairly lengthly in some cases, but smaller in others.";
-
+    String [] iTitle = {"Inscription 1", "Inscription 2", "Inscription 3"};
+    String [] iInfo = {"Inscription 1 Information", "Inscription 2 Information", "Inscription 3 Information"};
 
     private Inscription [] tabsOpen;
     private int numTabsOpen;
     private final static int MAX_TABS = 8;
-
-
-    /** Build a basic notification - code from Android development documents
-    Builder mBuilder =
-            new Builder(this)
-                    .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
-                    .setContentTitle("My notification")
-                    .setContentText("Click to view this inscription!");
-
-    Intent resultIntent = new Intent(this, InscriptionActivity.class);
-    // Because clicking the notification opens a new ("special") activity, there's
-// no need to create an artificial back stack.
-
-    NotificationManager mNotifyMgr;
-
-    //final TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
-
-
-    public void setUpNotification(){
-
-        PendingIntent resultPendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        0,
-                        resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    }
-     */
 
     //---------------------------------------------------------------//
 
@@ -86,15 +44,10 @@ public class InscriptionActivity extends BaseActivity {
         info.setText(infoText);
     }
 
-    //---------------------------------------------------------------//
-
-    public void setNotificationTitle(String title){
-        //mBuilder.setContentTitle(title);
-    }
 
     //---------------------------------------------------------------//
 
-    private int addTab(String tag, String inscriptionName, int tabNum, int inscriptionID, Bitmap thumbnail, float difficulty,
+    public int addTab(String tag, String inscriptionName, int tabNum, int inscriptionID, Bitmap thumbnail, float difficulty,
                        float [] coordinates, float radius, String inscriptionLatin){
 
         TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
@@ -107,9 +60,9 @@ public class InscriptionActivity extends BaseActivity {
             tabhost.addTab(ts);
             tabsOpen[numTabsOpen] = new Inscription(1, null, 1, coordinates, 1, inscriptionLatin);
             numTabsOpen++;
-            setInfo(iInfo1);
+            setInfo(iInfo[tabNum]);
 
-            /* ++ update inscription page settings ++ */
+            /* ++ update all inscription page settings ++ */
 
             return 0;
         }
@@ -125,20 +78,32 @@ public class InscriptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscription);
 
-        //set up hashmap to keep track of tabs
-        //tabsOpen = new HashMap<Integer, Inscription>();
-        tabsOpen = new Inscription[MAX_TABS];
-        numTabsOpen = 0;
+        if(tabsOpen == null)
+            tabsOpen = new Inscription[MAX_TABS];
+        if(numTabsOpen < 1)
+            numTabsOpen = 0;
 
-        //initialize anything needed for notifications
-        //setUpNotification();
 
-        //set up tabhost for the first time
+        //set up tabhost, possibly for the first time
         final TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
 
+        // get passed intent, which may contain the instruction to contruct a new tab
+        Intent intent = getIntent();
 
+        // get message value from intent, if no new tab should be added, -1
+        int ID = intent.getIntExtra("ID", -1);
+
+        //just some filler numbers, which will eventually be provided by the back end
         float [] coords = {1,1};
-        addTab("tab1","Inscription 1", 0, 0, null, 1, coords, 1, iInfo1);
+
+        addTab("tab1","Inscription 1", 0, 0, null, 1, coords, 1, iInfo[0]);
+
+        // eventually would open up a tab for whatever inscription ID was passed. For Prototype 1
+        // this just makes a new tab for inscription 2 and sets it as the current one
+        if(ID != -1) {
+            addTab("tab" + ID, "Inscription 2", 1, 0, null, 1, coords, 1, iInfo[ID]);
+            tabhost.setCurrentTab(1);
+        }
 
         //set up how changing a tab modifies the information displayed
         tabhost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
@@ -160,23 +125,7 @@ public class InscriptionActivity extends BaseActivity {
         });
 
 
-        //puts a button in that will issue a notification and make a new tab
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                //send a notification
-                setNotificationTitle("Open second inscription!");
-                //mNotifyMgr.notify(1, mBuilder.build());
-
-                float [] coords = {1,1};
-                addTab("tab2", "Inscription " + (numTabsOpen + 1), 0, 0, null, 1, coords, 1, iInfo2);
-                tabhost.setCurrentTab(1);
-
-                //disable the button
-                button.setEnabled(false);
-            }
-        });
 
 
 

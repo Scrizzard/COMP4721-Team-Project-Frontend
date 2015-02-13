@@ -1,6 +1,9 @@
 package com.example.singi_000.testmultiplescreens;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,10 +13,49 @@ import android.widget.Toast;
 
 public class BaseActivity extends ActionBarActivity {
 
+    /** Build a basic notification - code from Android development documents */
+    NotificationCompat.Builder mBuilder =
+            new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
+                    .setContentTitle("My notification")
+                    .setContentText("Click to view this inscription!");
+
+    Intent resultIntent = new Intent(this, InscriptionActivity.class);
+    // Because clicking the notification opens a new ("special") activity, there's
+// no need to create an artificial back stack.
+
+    NotificationManager mNotifyMgr;
+
+    //final TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
+
+
+    public void setUpNotification(){
+
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    }
+
+    //---------------------------------------------------------------//
+
+    public void setNotificationTitle(String title){
+        mBuilder.setContentTitle(title);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+
+        setUpNotification();
     }
 
 
