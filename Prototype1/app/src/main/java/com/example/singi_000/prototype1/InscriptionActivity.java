@@ -57,7 +57,9 @@ public class InscriptionActivity extends BaseActivity {
                 tabs[i].setVisibility(View.INVISIBLE);
             }
         }
-        switchTab(currTab);
+        if(numTabsOpen>0) {
+            switchTab(currTab);
+        }
 
 
         //setting up the current colors of the tabs for testing
@@ -99,6 +101,7 @@ public class InscriptionActivity extends BaseActivity {
             if(firstChar==-1){
                 //the file is empty, so there are no tabs open
                 numTabsOpen=0;
+                currTab=0;
                 return;
             }
             char currChar=(char)firstChar;
