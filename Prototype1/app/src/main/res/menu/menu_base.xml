@@ -11,6 +11,6 @@
 
 <item android:title="Settings" android:id="@+id/item5"/>
 
-<item android:title="Help" android:id="@+id/item6"/>
+<item android:title="Help/About" android:id="@+id/item6"/>
 
     </menu>
