@@ -66,8 +66,9 @@ public class InscriptionActivity extends BaseActivity {
         for(int i=0; i<MAX_TABS; i++){
             tabs[i].setBackgroundColor(Color.LTGRAY);
         }
-        tabs[currTab].setBackgroundColor(Color.BLUE);
-
+        if(numTabsOpen>0) {
+            tabs[currTab].setBackgroundColor(Color.BLUE);
+        }
 
 
 
