@@ -184,6 +184,7 @@ public class InscriptionActivity extends BaseActivity {
                 }
                 tabInscriptionKeys[0]=inscriptionKey;
                 saveTabs();
+                switchTab(0);
                 return;
             }
         }
