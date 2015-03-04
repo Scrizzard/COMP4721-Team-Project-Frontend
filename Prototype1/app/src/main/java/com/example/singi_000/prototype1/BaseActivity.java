@@ -1,5 +1,6 @@
 package com.example.singi_000.prototype1;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
@@ -14,7 +15,7 @@ import android.view.View;
 import com.example.singi_000.testmultiplescreens.R;
 
 
-public class BaseActivity extends ActionBarActivity {
+public class BaseActivity extends Activity {
 
 /*
     // Build a basic notification - code from Android development documents
