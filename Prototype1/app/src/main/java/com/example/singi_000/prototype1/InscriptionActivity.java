@@ -5,9 +5,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TabHost;
+import android.view.View;
 
 import com.example.singi_000.testmultiplescreens.R;
 
@@ -20,6 +21,8 @@ public class InscriptionActivity extends BaseActivity {
     private Inscription [] tabsOpen;
     private int numTabsOpen;
     private final static int MAX_TABS = 8;
+
+    private Button closeTabBtn;
 
     //---------------------------------------------------------------//
 
@@ -63,6 +66,35 @@ public class InscriptionActivity extends BaseActivity {
             return -1;
     }
 
+    public int closeCurrentTab(TabHost tabHost){
+
+        int i = tabHost.getCurrentTab();
+        Inscription currInscription = tabsOpen[i];
+
+        System.out.println(i);
+
+        // If the last tab is closed, return to the main screen
+        if (numTabsOpen == 1){
+            tabsOpen[i] = null;
+            numTabsOpen--;
+            Intent intent = new Intent(this, BaseActivity.class);
+            tabHost.getTabWidget().removeView(tabHost.getTabWidget().getChildTabViewAt(i));
+            startActivity(intent);
+            return -1;
+        // Otherwise, close the current tab and shift the elements of the array
+        // so that the next opened tab will be opened at index numTabsOpen
+        } else {
+            if (i != numTabsOpen -1){
+                tabsOpen[i] = null;
+                for(int j=i; j<numTabsOpen-1;j++){
+                    tabsOpen[j+1] = tabsOpen[j];
+                }
+            }
+            tabHost.getTabWidget().removeView(tabHost.getTabWidget().getChildTabViewAt(i));
+            numTabsOpen--;
+            return i;
+        }
+    }
 
     //---------------------------------------------------------------//
 
@@ -80,6 +112,15 @@ public class InscriptionActivity extends BaseActivity {
         //set up tabhost, possibly for the first time
         final TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
 
+        closeTabBtn = (Button) findViewById(R.id.button2);
+        closeTabBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+               closeCurrentTab(tabhost);
+            }
+        });
+
         // get passed intent, which may contain the instruction to contruct a new tab
         Intent intent = getIntent();
 
@@ -90,6 +131,7 @@ public class InscriptionActivity extends BaseActivity {
         float [] coords = {1,1};
 
         addTab("tab1","Inscription 1", 0, 0, null, 1, coords, 1, iInfo[0]);
+        addTab("tab" + 1, "Inscription 2", 1, 0, null, 1, coords, 1, iInfo[1]);
 
         // eventually would open up a tab for whatever inscription ID was passed. For Prototype 1
         // this just makes a new tab for inscription 2 and sets it as the current one
