@@ -23,8 +23,8 @@ public class SearchActivity extends BaseActivity {
             public void onClick(View v) {
 
                 //send a notification
-                setNotificationTitle("Open second inscription!");
-                mNotifyMgr.notify(1, mBuilder.build());
+                //setNotificationTitle("Open second inscription!");
+              //  mNotifyMgr.notify(1, mBuilder.build());
 
                 //send some information about the notification to the inscription activity
                 // and switch to the new tab
@@ -46,18 +46,5 @@ public class SearchActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

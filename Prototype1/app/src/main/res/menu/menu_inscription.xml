@@ -1,7 +1,16 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.singi_000.prototype1.InscriptionActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item android:title="Inscriptions" android:id="@+id/item1"/>
+
+    <item android:title="List" android:id="@+id/item2"/>
+
+    <item android:title="Search" android:id="@+id/item3"/>
+
+    <item android:title="Map" android:id="@+id/item4"/>
+
+    <item android:title="Settings" android:id="@+id/item5"/>
+
+    <item android:title="Help" android:id="@+id/item6"/>
+
 </menu>

@@ -8,13 +8,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.view.View;
 
 import com.example.singi_000.testmultiplescreens.R;
 
 
 public class BaseActivity extends ActionBarActivity {
 
-    /** Build a basic notification - code from Android development documents */
+/*
+    // Build a basic notification - code from Android development documents
     NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
@@ -49,16 +52,19 @@ public class BaseActivity extends ActionBarActivity {
     public void setNotificationTitle(String title){
         mBuilder.setContentTitle(title);
     }
-
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        setUpNotification();
+        //setUpNotification();
     }
 
+    public void onMenuButtonClick(View v){
+        openOptionsMenu();
+    }
 
 
 

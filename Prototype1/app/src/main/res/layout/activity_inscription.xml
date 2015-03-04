@@ -1,74 +1,123 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuButton"
+        android:onClick="onMenuButtonClick"
+        android:src="@drawable/menu_icon"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-
-    <TabHost
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/tabHost"
-        android:layout_alignParentTop="false"
-        android:layout_centerHorizontal="true">
+        android:layout_below="@+id/menuButton"
+        android:layout_alignRight="@+id/menuButton"
+        android:layout_alignEnd="@+id/menuButton"
+        android:weightSum="8"
+        android:id="@+id/linearLayout">
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab1"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab2"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
-            <TabWidget
-                android:id="@android:id/tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"></TabWidget>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab3"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
-            <FrameLayout
-                android:id="@android:id/tabcontent"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab4"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
-                <RelativeLayout
-                    android:id="@+id/tab"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab5"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab6"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab7"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
-                    <!-- Title of Inscription -->
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tab8"
+            android:layout_weight="1"
+            android:onClick="onTabClick"/>
 
+    </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="70dp"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Title"
-                        android:id="@+id/titleView"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="91dp"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_weight="0.12" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="#"
+        android:id="@+id/tabExampleText"
+        android:layout_below="@+id/menuButton"
+        android:layout_centerHorizontal="true" />
 
-                    <!-- Info of Inscription -->
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="X"
+        android:id="@+id/button2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="closeTab"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="open tab test"
+        android:id="@+id/button3"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2"
+        android:onClick="testTabOpen"/>
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Block of Information"
-                        android:id="@+id/infoView"
-                        android:layout_gravity="center"
-                        android:layout_below="@+id/titleView"
-                        android:layout_centerHorizontal="true" />
-                </RelativeLayout>
-
-
-            </FrameLayout>
-        </RelativeLayout>
-    </TabHost>
 
 </RelativeLayout>
