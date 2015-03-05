@@ -133,7 +133,8 @@ public class InscriptionActivity extends BaseActivity {
 
             //first, figuring out if the currTab will be one of the 8 open, if not making it 0
             currTab=keys.search(currTabInscriptionKey)-1;
-            if(currTab>7){
+
+            if(currTab<0 || currTab>MAX_TABS-1){
                 currTab=0;
             }
             numTabsOpen=0;
