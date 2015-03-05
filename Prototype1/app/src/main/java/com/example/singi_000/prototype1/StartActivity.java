@@ -17,7 +17,7 @@ public class StartActivity extends BaseActivity {
 
         load();
 
-        Intent i = new Intent(this, BaseActivity.class);
+        Intent i = new Intent(this, HelpActivity.class);
         startActivity(i);
     }
 

@@ -82,13 +82,19 @@ public class InscriptionActivity extends BaseActivity {
      */
     public void saveTabs(){
         try {
+            //saving the order of tabs
             FileOutputStream fileout=openFileOutput("InscriptionData.txt", MODE_PRIVATE);
             OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
-            outputWriter.write(tabInscriptionKeys[currTab] + "\n");
             for (int i = numTabsOpen-1; i >=0; i--) {
                 outputWriter.write(tabInscriptionKeys[i] + "\n");
             }
             outputWriter.close();
+            //saving the current tab
+            fileout=openFileOutput("InscriptionCurrData.txt", MODE_PRIVATE);
+            outputWriter=new OutputStreamWriter(fileout);
+            outputWriter.write(tabInscriptionKeys[currTab] + "\n");
+            outputWriter.close();
+
         }catch(IOException e){
             //This shouldn't happen since the file does exist and is writable.
             //I'm not sure what sort of error handling should be placed here.
@@ -97,7 +103,8 @@ public class InscriptionActivity extends BaseActivity {
 
     public void loadTabs(){
         try {
-            FileInputStream fileIn=openFileInput("InscriptionData.txt");
+            //loading the current tab
+            FileInputStream fileIn=openFileInput("InscriptionCurrData.txt");
             InputStreamReader inputRead= new InputStreamReader(fileIn);
             int firstChar=inputRead.read();
             if(firstChar==-1){
@@ -113,6 +120,10 @@ public class InscriptionActivity extends BaseActivity {
                 currChar=(char)inputRead.read();
             }
             int currTabInscriptionKey=Integer.valueOf(st);
+
+            //loading the list of tabs
+            fileIn=openFileInput("InscriptionData.txt");
+            inputRead= new InputStreamReader(fileIn);
             Stack<Integer> keys = new Stack<Integer>();
             boolean done=false;
             while(!done){
@@ -127,7 +138,9 @@ public class InscriptionActivity extends BaseActivity {
                         st += currChar;
                         currChar = (char) inputRead.read();
                     }
-                    keys.push(Integer.valueOf(st));
+                    if(st.length()>0) {
+                        keys.push(Integer.valueOf(st));
+                    }
                 }
             }
             inputRead.close();
@@ -140,16 +153,14 @@ public class InscriptionActivity extends BaseActivity {
             }
             numTabsOpen=0;
             ArrayList<Integer> usedKeys=new ArrayList<Integer>();
-            for(int i=0; i<MAX_TABS; i++){
-                if(!keys.empty()) {
+            while(numTabsOpen<MAX_TABS &&!keys.empty()){
                     int nextKey=keys.pop();
                     if(!usedKeys.contains(nextKey)) {
+                        tabInscriptionKeys[numTabsOpen] = nextKey;
+                        usedKeys.add(tabInscriptionKeys[numTabsOpen]);
                         numTabsOpen++;
-                        tabInscriptionKeys[i] = nextKey;
-                        usedKeys.add(tabInscriptionKeys[i]);
                     }
                 }
-            }
 
         } catch (IOException e) {
             System.out.println("FILE NOT FOUND ");

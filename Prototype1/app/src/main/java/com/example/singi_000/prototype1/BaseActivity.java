@@ -111,11 +111,20 @@ public class BaseActivity extends Activity {
      */
     public void appendNumToInscriptionData(int num) {
         try {
-            FileOutputStream fos = openFileOutput("InscriptionData.txt", MODE_APPEND);
+            //updating the new current tab
+            FileOutputStream fos =openFileOutput("InscriptionCurrData.txt", MODE_PRIVATE);
             OutputStreamWriter outputWriter = new OutputStreamWriter(fos);
             outputWriter.write(num + "\n");
             outputWriter.close();
             fos.close();
+
+            //adding the tab to the list of tabs
+            FileOutputStream fos2=openFileOutput("InscriptionData.txt", MODE_APPEND);
+            OutputStreamWriter outputWriter2 = new OutputStreamWriter(fos2);
+            outputWriter2.write(num + "\n");
+            outputWriter2.close();
+            fos2.close();
+
         }
         catch (Exception e) {
 
