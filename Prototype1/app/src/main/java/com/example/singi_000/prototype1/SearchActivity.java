@@ -9,6 +9,8 @@ import android.widget.Button;
 
 import com.example.singi_000.testmultiplescreens.R;
 
+import java.util.Observable;
+
 
 public class SearchActivity extends BaseActivity {
 
@@ -22,15 +24,7 @@ public class SearchActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //send a notification
-                //setNotificationTitle("Open second inscription!");
-              //  mNotifyMgr.notify(1, mBuilder.build());
-
-                //send some information about the notification to the inscription activity
-                // and switch to the new tab
-                Intent i = new Intent(v.getContext(), InscriptionActivity.class);
-                i.putExtra("ID", 1);
-                startActivity(i);
+                beConnection.update(new Observable(), 9);
 
                 //disable the button
                 button.setEnabled(false);

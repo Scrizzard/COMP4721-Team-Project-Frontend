@@ -17,8 +17,6 @@ import com.example.singi_000.testmultiplescreens.R;
 
 public class BaseActivity extends Activity {
 
-/*
-    // Build a basic notification - code from Android development documents
     NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
@@ -26,41 +24,20 @@ public class BaseActivity extends Activity {
                     .setContentText("Click to view this inscription!");
 
     Intent resultIntent = new Intent(this, InscriptionActivity.class);
-    // Because clicking the notification opens a new ("special") activity, there's
-// no need to create an artificial back stack.
+
+
 
     NotificationManager mNotifyMgr;
 
-    //final TabHost tabhost = (TabHost) findViewById(R.id.tabHost);
-
-
-    public void setUpNotification(){
-
-        PendingIntent resultPendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        0,
-                        resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    }
-
-    //---------------------------------------------------------------//
-
-    public void setNotificationTitle(String title){
-        mBuilder.setContentTitle(title);
-    }
-*/
+    BackEndConnection beConnection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
-        //setUpNotification();
+        setUpNotification();
+        beConnection = new BackEndConnection(this.getApplicationContext(), this);
     }
 
     public void onMenuButtonClick(View v){
@@ -105,5 +82,20 @@ public class BaseActivity extends Activity {
                 return super.onOptionsItemSelected(item);
         }
 
+    }
+
+    public void setUpNotification(){
+
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        resultIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
     }
 }
