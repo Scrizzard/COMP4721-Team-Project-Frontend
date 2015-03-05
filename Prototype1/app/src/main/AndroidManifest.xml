@@ -8,11 +8,7 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme" >
-        <activity
-            android:name="com.example.singi_000.prototype1.MainActivity"
-            android:label="@string/app_name" >
 
-        </activity>
         <activity
             android:name="com.example.singi_000.prototype1.BaseActivity"
             android:label="@string/title_activity_base"
