@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-<item android:title="Inscriptions" android:id="@+id/item1"/>
+    <item android:title="Inscriptions" android:id="@+id/item1"/>
 
-<item android:title="List" android:id="@+id/item2"/>
+    <item android:title="List" android:id="@+id/item2"/>
 
-<item android:title="Search" android:id="@+id/item3"/>
+    <item android:title="Search" android:id="@+id/item3"/>
 
-<item android:title="Map" android:id="@+id/item4"/>
+    <item android:title="Map" android:id="@+id/item4"/>
 
-<item android:title="Settings" android:id="@+id/item5"/>
+    <item android:title="Settings" android:id="@+id/item5"/>
 
-<item android:title="Help/About" android:id="@+id/item6"/>
+    <item android:title="Help &amp; About" android:id="@+id/item6"/>
 
-    </menu>
+</menu>
