@@ -24,10 +24,11 @@ public class BaseActivity extends Activity {
             new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
                     .setContentTitle("My notification")
-                    .setContentText("Click to view this inscription!");
+                    .setContentText("Click to view this inscription!")
+                    .setAutoCancel(true);
                     //
 
-    Intent resultIntent = new Intent(this, InscriptionActivity.class);
+    Intent resultIntent;
 
 
 
@@ -90,6 +91,7 @@ public class BaseActivity extends Activity {
 
     public void setUpNotification(){
 
+        resultIntent = new Intent(this, InscriptionActivity.class);
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         this,
