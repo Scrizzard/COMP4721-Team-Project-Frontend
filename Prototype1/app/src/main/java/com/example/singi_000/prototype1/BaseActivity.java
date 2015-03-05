@@ -14,6 +14,9 @@ import android.view.View;
 
 import com.example.singi_000.testmultiplescreens.R;
 
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+
 
 public class BaseActivity extends Activity {
 
@@ -22,6 +25,7 @@ public class BaseActivity extends Activity {
                     .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
                     .setContentTitle("My notification")
                     .setContentText("Click to view this inscription!");
+                    //
 
     Intent resultIntent = new Intent(this, InscriptionActivity.class);
 
@@ -96,5 +100,23 @@ public class BaseActivity extends Activity {
         mBuilder.setContentIntent(resultPendingIntent);
 
         mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    }
+
+
+    /**
+     * Append an inscription ID to the InscriptionData.txt file
+     * @param num
+     */
+    public void appendNumToInscriptionData(int num) {
+        try {
+            FileOutputStream fos = openFileOutput("InscriptionData.txt", MODE_APPEND);
+            OutputStreamWriter outputWriter = new OutputStreamWriter(fos);
+            outputWriter.write(num + "\n");
+            outputWriter.close();
+            fos.close();
+        }
+        catch (Exception e) {
+
+        }
     }
 }

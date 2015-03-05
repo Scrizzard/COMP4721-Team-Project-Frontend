@@ -35,15 +35,11 @@ public class BackEndConnection implements Observer {
 
         try {
             //set the output stream to append the new ID
-            FileOutputStream fos = context.openFileOutput("InscriptionData.txt", context.MODE_APPEND);
-            OutputStreamWriter outputWriter=new OutputStreamWriter(fos);
-            outputWriter.write(ID + "\n");
-            outputWriter.close();
-            fos.close();
+            activity.appendNumToInscriptionData(ID);
 
             //send a notification -- will be able to add more details here, such as thumbnail,
             //once we have the concrete methods from the back end
-            activity.mBuilder.setContentTitle("Entered geofence: " + "Inscription Name");
+            activity.mBuilder.setContentTitle("Entered geofence for ID: " + ID);
             activity.mNotifyMgr.notify(ID, activity.mBuilder.build());
         }
         catch(Exception e) {

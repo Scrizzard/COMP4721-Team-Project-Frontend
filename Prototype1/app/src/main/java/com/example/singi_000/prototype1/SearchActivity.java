@@ -19,17 +19,7 @@ public class SearchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        //puts a button in that will issue a notification and make a new tab
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                beConnection.update(new Observable(), 9);
-
-                //disable the button
-                button.setEnabled(false);
-            }
-        });
     }
 
 
