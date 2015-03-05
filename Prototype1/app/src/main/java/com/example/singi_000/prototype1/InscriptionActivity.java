@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.example.singi_000.testmultiplescreens.R;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -138,10 +139,15 @@ public class InscriptionActivity extends BaseActivity {
                 currTab=0;
             }
             numTabsOpen=0;
+            ArrayList<Integer> usedKeys=new ArrayList<Integer>();
             for(int i=0; i<MAX_TABS; i++){
                 if(!keys.empty()) {
-                    numTabsOpen++;
-                    tabInscriptionKeys[i] = keys.pop();
+                    int nextKey=keys.pop();
+                    if(!usedKeys.contains(nextKey)) {
+                        numTabsOpen++;
+                        tabInscriptionKeys[i] = nextKey;
+                        usedKeys.add(tabInscriptionKeys[i]);
+                    }
                 }
             }
 
@@ -170,6 +176,8 @@ public class InscriptionActivity extends BaseActivity {
         t=(TextView)findViewById(R.id.tabExampleText);
         t.setText(""+tabInscriptionKeys[tabNum]);
         saveTabs();
+
+        //FILL IN CODE HERE TO CHANGE INSCRIPTION INFORMATION
     }
 
     /**
@@ -205,13 +213,6 @@ public class InscriptionActivity extends BaseActivity {
         saveTabs();
     }
 
-    /**
-     * THIS METHOD WILL NOT EXIST IN LATER VERSIONS. It is here to test the opening of tabs.
-     * @param view
-     */
-    public void testTabOpen(View view) {
-        openTab(testTabNum++);
-    }
 
     /**
      * This method allows a tab to be closed. It moves up all tabs below it and removes the current
@@ -219,28 +220,28 @@ public class InscriptionActivity extends BaseActivity {
      * @param view
      */
     public void closeTab(View view){
-        for(int i=currTab; i<MAX_TABS-1; i++){
-            tabInscriptionKeys[i]=tabInscriptionKeys[i+1];
-        }
-        tabInscriptionKeys[MAX_TABS-1]=-1;
-        numTabsOpen--;
-         tabs[numTabsOpen].setVisibility(View.INVISIBLE);
-        if(currTab<numTabsOpen){
-            switchTab(currTab);
-        }
-        else{
-            if(currTab>0) {
-                currTab--;
+        if(numTabsOpen>0) {
+            for (int i = currTab; i < MAX_TABS - 1; i++) {
+                tabInscriptionKeys[i] = tabInscriptionKeys[i + 1];
+            }
+            tabInscriptionKeys[MAX_TABS - 1] = -1;
+            numTabsOpen--;
+            tabs[numTabsOpen].setVisibility(View.INVISIBLE);
+            if (currTab < numTabsOpen) {
                 switchTab(currTab);
+            } else {
+                if (currTab > 0) {
+                    currTab--;
+                    switchTab(currTab);
+                } else {
+                    //FILL IN CODE HERE TO HANDLE NO MORE INSCRIPTION TABS BEING OPEN
+                    //All tabs have been closed;
+                    //Fill all inscription fields with nothing
+                    //Make title "No Inscriptions Open"
+                }
             }
-            else{
-                //FILL IN CODE HERE TO HANDLE NO MORE INSCRIPTION TABS BEING OPEN
-                //All tabs have been closed;
-                //Fill all inscription fields with nothing
-                //Make title "No Inscriptions Open"
-            }
+            saveTabs();
         }
-        saveTabs();
     }
 
     //---------------------------------------------------------------//
