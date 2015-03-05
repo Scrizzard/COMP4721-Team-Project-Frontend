@@ -89,15 +89,6 @@
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="#"
-        android:id="@+id/tabExampleText"
-        android:layout_below="@+id/menuButton"
-        android:layout_centerHorizontal="true" />
-
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -109,6 +100,89 @@
         android:layout_alignParentEnd="true"
         android:onClick="closeTab"/>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/menuButton"
+        android:layout_toRightOf="@+id/menuButton"
+        android:layout_toEndOf="@+id/menuButton"
+        android:id="@+id/inscription_tab_body">
 
+        <ImageView
+            android:layout_width="154dp"
+            android:layout_height="152dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/inscription_example"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="#"
+            android:id="@+id/tabExampleText"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="No Tabs Currently Open!"
+            android:id="@+id/tabs_closed_notice"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Directions to inscription. This is how you would find it!"
+            android:id="@+id/textView6" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="15dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Difficulty: 3.5 / 5 Incriptions"
+            android:id="@+id/textView7" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:minHeight="15dp" />
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Found Inscription"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/checkBox3"
+            android:checked="false" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

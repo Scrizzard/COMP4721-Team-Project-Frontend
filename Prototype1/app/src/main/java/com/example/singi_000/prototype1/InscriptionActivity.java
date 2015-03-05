@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TabHost;
 import android.view.View;
-
+import android.widget.DatePicker;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import com.example.singi_000.testmultiplescreens.R;
 import java.io.*;
 import java.util.ArrayList;
@@ -69,6 +72,8 @@ public class InscriptionActivity extends BaseActivity {
         }
         if(numTabsOpen>0) {
             tabs[currTab].setBackgroundColor(Color.BLUE);
+        } else {
+            disableTabElements(true);
         }
 
 
@@ -101,6 +106,9 @@ public class InscriptionActivity extends BaseActivity {
         }
     }
 
+    /**
+     *
+     */
     public void loadTabs(){
         try {
             //loading the current tab
@@ -168,7 +176,11 @@ public class InscriptionActivity extends BaseActivity {
             //I'm not sure what sort of error handling should be placed here.
         }
 
-
+        if (numTabsOpen == 0){
+            disableTabElements(true);
+        } else {
+            disableTabElements(false);
+        }
 
     }
 
@@ -185,7 +197,8 @@ public class InscriptionActivity extends BaseActivity {
         tabs[currTab].setBackgroundColor(Color.BLUE);
         TextView t=new TextView(this);
         t=(TextView)findViewById(R.id.tabExampleText);
-        t.setText(""+tabInscriptionKeys[tabNum]);
+        System.out.println("inscription #: "+tabInscriptionKeys[tabNum]);
+        t.setText("Inscription #"+tabInscriptionKeys[tabNum]);
         saveTabs();
 
         //FILL IN CODE HERE TO CHANGE INSCRIPTION INFORMATION
@@ -199,6 +212,9 @@ public class InscriptionActivity extends BaseActivity {
      * @param inscriptionKey - the key of the inscription to be opened
      */
     public void openTab(int inscriptionKey){
+        if (numTabsOpen == 0){
+            disableTabElements(false);
+        }
         //making sure this inscription isn't open yet
         for(int i=0; i<numTabsOpen; i++){
             if(tabInscriptionKeys[i]==inscriptionKey){
@@ -253,7 +269,63 @@ public class InscriptionActivity extends BaseActivity {
             }
             saveTabs();
         }
+
+        if(numTabsOpen==0){
+            disableTabElements(true);
+        }
+        saveTabs();
     }
+
+
+    /**
+     * Sets visibility of all inscription elements to @param visibility
+     * Sets visibility of the notice that no tabs are open to !(@param visibility).
+     * (e.g. pass "false" to hide elements + display notice)
+     *
+     * @param disable Desired usability state of inscription elements.
+     */
+    public void disableTabElements(boolean disable){
+      int tabElements, noTabsNotice;
+      boolean tabElemsClick;
+
+        if (disable){
+            tabElements = View.INVISIBLE;
+            noTabsNotice = View.VISIBLE;
+            tabElemsClick = false;
+        } else {
+            tabElements = View.VISIBLE;
+            noTabsNotice = View.INVISIBLE;
+            tabElemsClick = true;
+        }
+
+        // hide the "close tab" button
+        Button closeTabButton = (Button)findViewById(R.id.button2);
+        closeTabButton.setVisibility(tabElements);
+        closeTabButton.setClickable(tabElemsClick);
+
+        // hide the tabs
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        for(int i=0; i<linearLayout.getChildCount(); i++){
+            View v = linearLayout.getChildAt(i);
+            v.setVisibility(tabElements);
+            v.setClickable(tabElemsClick);
+        }
+
+        // hide the body elements
+        linearLayout = (LinearLayout) findViewById(R.id.inscription_tab_body);
+        for(int i=0; i<linearLayout.getChildCount();i++){
+            View v = linearLayout.getChildAt(i);
+            if (v instanceof TextView && v.getId() == R.id.tabs_closed_notice){
+                v.setVisibility(noTabsNotice);
+            } else {
+                v.setClickable(tabElemsClick);
+                v.setVisibility(tabElements);
+            }
+        }
+
+    }
+
+
 
     //---------------------------------------------------------------//
 
