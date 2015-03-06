@@ -1,12 +1,16 @@
 package com.example.singi_000.prototype1;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.RingtoneManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -20,13 +24,18 @@ import java.io.OutputStreamWriter;
 
 public class BaseActivity extends Activity {
 
+
+    // access to settings database
+    SharedPreferences prefs;
+
+    long [] vibratePattern = {500, 500, 500, 500};
+
     NotificationCompat.Builder mBuilder =
             new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.abc_list_selector_holo_dark)
                     .setContentTitle("My notification")
                     .setContentText("Click to view this inscription!")
                     .setAutoCancel(true);
-                    //
 
     Intent resultIntent;
 
@@ -41,8 +50,10 @@ public class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
 
+        prefs = getSharedPreferences("global_preferences", 0);
         setUpNotification();
         beConnection = new BackEndConnection(this.getApplicationContext(), this);
+
     }
 
     public void onMenuButtonClick(View v){
@@ -102,6 +113,12 @@ public class BaseActivity extends Activity {
         mBuilder.setContentIntent(resultPendingIntent);
 
         mNotifyMgr = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        Log.d("DEBUGGER", getSharedPreferences("global_preferences", 0).getString("notification_sound", "NULL"));
+
+        setNotificationSound(prefs.getString("notification_sound", "Silent"));
+
+        Log.d("DEBUGGER", getSharedPreferences("global_preferences", 0).getString("notification_sound", "NULL"));
     }
 
 
@@ -128,6 +145,21 @@ public class BaseActivity extends Activity {
         }
         catch (Exception e) {
 
+        }
+    }
+
+    public void setNotificationSound(String setting) {
+
+        if(setting.equals("Sound")) {
+            mBuilder.setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION));
+            mBuilder.setVibrate(vibratePattern);
+        }
+        else if(setting.equals("Vibrate")) {
+            mBuilder.setSound(null);
+            mBuilder.setVibrate(vibratePattern);
+        }
+        else if(setting.equals("Silent")) {
+            mBuilder.setSound(null);
         }
     }
 }

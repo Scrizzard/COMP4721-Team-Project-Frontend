@@ -13,4 +13,11 @@
     <string name="title_activity_search">SearchActivity</string>
     <string name="title_activity_start">StartActivity</string>
 
+    <string-array name="notification_sounds">
+        <item>Silent</item>
+        <item>Vibrate</item>
+        <item>Sound</item>
+    </string-array>
+
+
 </resources>

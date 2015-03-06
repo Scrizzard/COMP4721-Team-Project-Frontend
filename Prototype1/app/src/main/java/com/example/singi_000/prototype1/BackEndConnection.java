@@ -41,6 +41,9 @@ public class BackEndConnection implements Observer {
             //once we have the concrete methods from the back end
             activity.mBuilder.setContentTitle("Entered geofence for ID: " + ID);
             activity.mNotifyMgr.notify(ID, activity.mBuilder.build());
+
+
+
         }
         catch(Exception e) {
             Log.e(activity.getLocalClassName(), "Error in notification from back end");

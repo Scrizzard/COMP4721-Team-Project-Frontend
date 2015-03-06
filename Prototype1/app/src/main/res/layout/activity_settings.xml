@@ -200,6 +200,13 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Choose Notification Sound:"
+                android:id="@+id/textView5"
+                android:layout_column="0" />
         </TableRow>
 
         <TableRow
@@ -218,6 +225,22 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"></TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/notificationSound"
+                android:layout_column="0"
+                android:spinnerMode="dropdown" />
         </TableRow>
     </TableLayout>
 
